@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국 연예인 얼굴 이상형 TOP9</title>
+  <!-- 구글 고딕 폰트(Noto Sans KR) 불러오기 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- 시작 화면 -->
+    <section id="home" class="screen center">
+      <h1 data-i18n-html="homeTitle">나만의 한국 연예인<br><strong>얼굴 이상형 TOP9 👑</strong></h1>
+      <p class="lead" data-i18n="homeLead">직감으로 선택하여 나만의 이상형 TOP9을 결정하세요.</p>
+      <button class="primary" onclick="startPre()" data-i18n="startPre">시작하기</button>
+    </section>
+
+    <!-- 예선 화면 -->
+    <section id="pre" class="screen hidden">
+      <div class="head">
+        <h2 id="preTitle">예선</h2>
+      </div>
+      <div id="preGrid" class="grid"></div>
+      <div class="bottom">
+        <span id="preCount">선택 0 / 3</span>
+        <button id="preNext" class="primary small" data-i18n="next">다음 →</button>
+      </div>
+    </section>
+
+    <!-- 예선 완료 화면 -->
+    <section id="preDone" class="screen hidden center">
+      <h2 data-i18n="preDoneTitle">예선 완료!</h2>
+      <p class="lead"><span data-i18n="selectedFaces">선택한 인원은 총</span> <b id="preN">0</b><span data-i18n="people">명입니다.</span></p>
+      <p data-i18n="goMainDescription">다음은 1:1 비교를 진행하는 '본선'입니다.</p>
+      <button class="primary" onclick="startMain()" data-i18n="goMain">🔥 본선으로 이동</button>
+    </section>
+
+    <!-- 본선 화면 -->
+    <section id="main" class="screen hidden center">
+      <h2 id="mainTitle">ROUND 1 / 3</h2>
+      <p id="mainProgress">1 / 10</p>
+      <p id="mainPrompt" class="status">1위 선택 → 2위 선택</p>
+      <div id="mainPair"></div>
+    </section>
+
+    <!-- 본선 완료 화면 -->
+    <section id="mainDone" class="screen hidden center">
+      <h2 data-i18n="mainDoneTitle">본선 완료!</h2>
+      <p data-i18n="mainDoneText2">결승 후보 18명을 가리는 '최종전'으로 이동합니다.</p>
+      <button class="primary" onclick="startLast()" data-i18n="goLast">⚔️ 최종전으로 이동</button>
+    </section>
+
+    <!-- 최종전 화면 -->
+    <section id="last" class="screen hidden center">
+      <h2 data-i18n="lastTitle">본선 최종전</h2>
+      <p class="status" data-i18n="lastHint">결승에 진출시킬 후보를 선택하세요</p>
+      <div id="lastPair"></div>
+    </section>
+
+    <!-- 결승 안내 화면 -->
+    <section id="finalists" class="screen hidden center">
+      <h2 data-i18n="finalistsTitle">결승 진출자 18명 결정!</h2>
+      <p data-i18n="finalistsText">이제 1:1 대결입니다.<br>1위부터 9위까지 최종 TOP9을 결정합니다.</p>
+      <button class="primary" onclick="startFinal()" data-i18n="goFinal">👑 결승으로 이동</button>
+    </section>
+
+    <!-- 결승 화면 -->
+    <section id="final" class="screen hidden center">
+      <h2 data-i18n="finalTitle">결승 TOP9 선발 중</h2>
+      <p id="finalPrompt" class="status">누가 더 마음에 드나요?</p>
+      <div id="finalPair"></div>
+    </section>
+
+    <!-- 결과 화면 (1위 중앙 + 8방향 외곽 배치) -->
+    <section id="result" class="screen hidden center">
+      <div class="resultHead">
+        <h2 data-i18n-html="resultTitle">나만의<br><strong>얼굴 이상형 TOP9</strong> 👑</h2>
+      </div>
+
+      <!-- 중앙 1위 + 둘레 2~9위가 배치되는 영역 -->
+      <div id="resultGrid"></div>
+
+      <div class="action-buttons">
+        <button class="primary" onclick="copyResult()" data-i18n="copyResult">결과 복사하기</button>
+        <button class="secondary" onclick="resetAll()" data-i18n="redo">다시 하기</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
